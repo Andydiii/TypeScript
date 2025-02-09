@@ -1,2 +1,7 @@
-let numbers = [1, 2, '3'];
-
+function calculateTax(income: number, taxYear: number): number {
+    if (taxYear < 2000) {
+        return income * 10;
+    } else {
+        return 1.3;
+    }
+}

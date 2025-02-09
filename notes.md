@@ -28,5 +28,50 @@
     let numbers: number[] = [];
     numbers.forEach(n => n.someMethodOfNumber) // will give us all methods of number object
     ```
-  - `let user: [number, string] = [1, 'Mosh', 0];`
-  -   
+
+
+## Tuple
+- Tuple is a fixed length array where each element has a purticular type 
+- `let user: [number, string] = [1, 'Mosh'];`
+- usaully tuple is useful when there are only 2 values, key-value pair
+- confusing to use `let user: [number, string, boolean, number] = [1, 'Mosh', true, 0];`
+
+## enum
+- Used for some related constants
+  ```ts
+  const enum Size { Small = 1, Medium, Large};
+  let mySize: Size = Size.Medium;
+  console.log(mySize) // output 2 
+  ```
+
+## Functions
+- typeScript will know the return type based on the return value even if we dont state it 
+- a good practice is always to annotate the return type when define the function
+  ```ts
+  function calculateTax(income: number, taxYear: number): number {
+    if (taxYear < 2022) {
+      return income * 1.3
+    }
+  }
+  ```
+- ts function by default return undefined
+- taxYear is optional parameter, if it is given, use it, if not, use 2022
+  ```typescript
+  function calculateTax(income: number, taxYear?: number): number {
+    if ((taxYear || 2022) < 2022 ) {
+      return income * 1.3
+    }
+  }
+
+  calculateTax(10_000);
+  ```
+- default value version: if taxYear is given, use it, if not, use default value
+  ```typescript
+  function calculateTax(income: number, taxYear = 2022): number {
+    if (taxYear < 2022) {
+      return income * 1.3
+    }
+  }
+
+  calculateTax(10_000);
+  ```
