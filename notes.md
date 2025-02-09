@@ -75,3 +75,102 @@
 
   calculateTax(10_000);
   ```
+
+
+### Objects:
+- Object Syntax:
+  ```ts
+  // type alias
+  type Employee = {
+      readonly id: number, // cannot be modified 
+      name: string
+      retire: (data: Date) => void
+  }
+
+  let employee: Employee = {
+    id: 1,
+    name: 'Mosh',
+    retire: (date: Date) => {
+      console.log(date);
+    }
+  };
+  ```
+
+### Union types
+- syntax:
+  ```ts
+    function kgToLbs(weight: number | string): number {
+      if (typeof weight === 'number') {
+        // compiler knows it is a number
+        return weight * 2.2;
+      } else {
+        // compiler knows it is a string
+        return parseInt(weight) * 2.2;
+      }
+    }
+  ```
+
+### Intersection Types
+- syntax:
+  ```ts
+    type Draggable = {
+      drag: () => void
+    };
+
+    type Resizable = {
+      resize: () => void
+    };
+
+    type UIwidget = Draggable & Resizable;
+
+    let textBox: UIWidge = {
+      // have to implete all members of both type
+      drag: () => {},
+      resize: () => {}
+    }
+  ```
+### Literal Types
+- syntax:
+  ```ts
+  // in this case, quantity can = 100 or 50 only
+   type Quantity = 50 | 100;
+   let quantity: Quantity = 100;
+
+   type Metric = 'cm' | 'inch';
+   let metric: Metric = 'cm';
+  ```
+
+### Nullable type
+  ```ts
+    function greet(name: string | null | undefined) {
+      if (name) {
+        console.log(name.toUpperCase());
+      } else {
+        console.log('Hola');
+      }
+    }
+
+    greet(undefined);
+  ```
+
+# optional chainning
+- sometimes need null check
+```ts
+type Customer = {
+  birthday: Date
+};
+
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() }; 
+}
+
+let customer = getCustomer(0);
+
+if (customer !== null && customer !== undefined ) {
+  console.log(customer.birthday);
+}
+
+// or we can directly use optional property access operator. it only get excuted only if it is not a null and undefined
+console.log(customer?.birthday);
+
+```
